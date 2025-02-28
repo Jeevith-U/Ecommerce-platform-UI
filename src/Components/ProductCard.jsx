@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import ProductViewModel from "./ProductViewModel";
 
 const ProductCard = ({
               productId,
@@ -9,7 +10,7 @@ const ProductCard = ({
               quantity,
               price,
               discount,
-              specialPrice,
+              specialPrice
 }) => {
 
     const[openProductViewModel, setOpenProductViewModel] = useState(false) ;
@@ -33,7 +34,7 @@ const ProductCard = ({
                         quantity,
                         price,
                         discount,
-                        specialPrice,
+                        specialPrice
                     });
                 }} className="w-full overflow-hidden aspect-[3/2]">
                     <img src={image} alt={productName} className="w-full h-full cursor-pointer transition-transform duration-300 transform hover:scale-105" />
@@ -49,7 +50,7 @@ const ProductCard = ({
                             quantity,
                             price,
                             discount,
-                            specialPrice,
+                            specialPrice
                         });
                     }}
                         className="text-lg font-semibold mb-2 cursor-pointer">
@@ -86,6 +87,13 @@ const ProductCard = ({
                         {isAvailable ? "Add to Cart" : "Stock out"}
                     </button>
                 </div>
+                <ProductViewModel 
+                    open = {openProductViewModel}
+                    setOpen = {setOpenProductViewModel}
+                    product = {selectedViewProduct}
+                    isAvailable = {isAvailable}
+                />
+                
             </div>          
         )
 }
