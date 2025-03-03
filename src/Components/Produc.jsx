@@ -8,7 +8,7 @@ const Product = () => {
     const dispatch = useDispatch();
 
     // Pull values from Redux state
-    const { products, isLoading, errorMessage } = useSelector(state => state.products);
+    const { products, isLoading, errorMessage } = useSelector(state => state.products); // using  products, isLoading, errorMessage from reducer state
 
     useEffect(() => {
         dispatch(fetchProducts());
