@@ -21,8 +21,8 @@ const Product = () => {
     return (
         <div className='lg:px-14 sm:px-8 px-4 py-14 2xl:w-[90%] 2xl:mx-auto'>
             <Filter categories = {categories ? categories : []}/>
-            {true ? (
-                <Loader />
+            {isLoading ? (
+                <Loader text={"Category is Loading"}/>
             ) : errorMessage ? (
                 <div className='flex justify-center items-center h-[200px]'>
                     <FaExclamationTriangle className='text-slate-700 text-3xl mr-2'/>
