@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import ProductCard from './ProductCard';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts } from '../store/action';
+import { fetchCategories, fetchProducts } from '../store/action';
 import Filter from './Filter';
 import useProductFilter from './useProductFilter';
 
@@ -11,11 +11,15 @@ const Product = () => {
     useProductFilter(); // ✅ Added custom hook to handle product filtering
 
     // Pull values from Redux state
-    const { products, isLoading, errorMessage } = useSelector(state => state.products); // using  products, isLoading, errorMessage from reducer state
+    const { products, isLoading, errorMessage, categories } = useSelector(state => state.products); // using  products, isLoading, errorMessage from reducer state
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [dispatch]);
 
     return (
         <div className='lg:px-14 sm:px-8 px-4 py-14 2xl:w-[90%] 2xl:mx-auto'>
-            <Filter/>
+            <Filter categories = {categories ? categories : []}/>
             {isLoading ? (
                 <p>It is Loading...</p>
             ) : errorMessage ? (

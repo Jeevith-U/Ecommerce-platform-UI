@@ -25,3 +25,27 @@ export const fetchProducts = (queryString) => async (dispatch) => {
         });
     }
 };
+
+export const fetchCategories = () => async (dispatch) => {
+    dispatch({ type: "FETCH_PRODUCTS_REQUEST" });  // Start loading
+    try {
+        dispatch({ type: "CATEGORY_LOADER" }) ; // THIS IS SET FOR LODING
+        const { data } = await api.get(`/public/categories`);
+        dispatch({
+            type: "FETCH_CATEGORIES",
+            payload: data.content,
+            pageNumber: data.pageNumber,
+            pageSize: data.pageSize,
+            totalElements: data.totalElements,
+            totalPages: data.totalPages,
+            lastPage: data.lastPage,
+        });
+        dispatch({ type: "IS_ERROR" }) ; // THIS IS SET FOR LODING
+    } catch (error) {
+        console.log(error.message);
+        dispatch({
+            type: "FETCH_PRODUCTS_FAILURE",
+            payload: error?.response?.data?.message || "Failed to fetch products",
+        });
+    }
+};
