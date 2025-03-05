@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { IoAccessibility } from "react-icons/io5";
-import './App.css'
-import Product from './Components/Produc';
+import { useState } from 'react';
+import './App.css';
+import Home from './Components/home/Home';
+import { Routes, Route } from 'react-router-dom';
+import Product from './Components/Product';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
-    <>
-       <div>
-            <Product/>
-       </div>
-    </>
-  )
+    <Routes>
+      <Route path='/' element={<Home />} />
+      <Route path='/products' element={<Product/>} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
